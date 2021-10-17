@@ -13,7 +13,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <div className="container pt-4">
-          <Alert alert={{text: 'tetst'}}/>
+          <Alert />
           <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/about" component={About}/>
