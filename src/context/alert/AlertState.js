@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react'
-import {AlertContext} from './AlertContext'
+import {AlertContext} from './alertContext'
 import {alertReducer} from './alertReducer'
 import {ALERT_HIDE, ALERT_SHOW} from '../types'
 
