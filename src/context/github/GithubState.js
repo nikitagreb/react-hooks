@@ -14,13 +14,18 @@ export const GithubState = ({children}) => {
     loading: false,
     repos: []
   }
+
+  const withCreds = url => {
+    return `${url}client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
+  }
+
   const [state, dispatch] = useReducer(githubReducer, initialState)
 
   const search = async value => {
     setLoading()
 
     const response = await axios.get(
-      `https://api.github.com/search/users?q=${value}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
+      withCreds(`https://api.github.com/search/users?q=${value}&`)
     )
 
     dispatch({
@@ -31,21 +36,27 @@ export const GithubState = ({children}) => {
 
   const getUser = async name => {
     setLoading()
-    // ...
+
+    const response = await axios.get(
+      withCreds(`https://api.github.com/user/${name}?`)
+    )
 
     dispatch({
       type: GET_USER,
-      payload: []
+      payload: response.data
     })
   }
 
   const getRepos = async name => {
     setLoading()
-    // ...
+
+    const response = await axios.get(
+      withCreds(`https://api.github.com/user/${name}/repos?per_page=5&`)
+    )
 
     dispatch({
       type: GET_REPOS,
-      payload: []
+      payload: response.data
     })
   }
 
