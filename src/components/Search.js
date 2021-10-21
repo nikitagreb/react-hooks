@@ -12,6 +12,8 @@ export const Search = () => {
       return
     }
 
+    github.clearUsers()
+
     if (event.target.value.trim()) {
       github.search(value.trim())
       hide()
